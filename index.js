@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) Mainflux
  *
  * Coreflux is licensed under an MIT license.
@@ -6,8 +6,7 @@
  * See the included LICENSE file for more details.
  */
 
-var lwm2m = require ('../');
+var lwm2mServer = require('./lib/lwm2m-server');
 
-var server = lwm2m.server();
+module.exports.server = lwm2mServer;
 
-server.start();
