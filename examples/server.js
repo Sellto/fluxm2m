@@ -6,8 +6,20 @@
  * See the included LICENSE file for more details.
  */
 
-var lwm2m = require ('../');
+var lwm2m   = require ('../');
+var coap    = require ('coap');
 
 var server = lwm2m.server();
 
 server.start();
+
+var req = coap.request('coap://localhost/')
+
+req.on('response', function(res) {
+    res.pipe(process.stdout);
+    res.on('end', function() {
+        process.exit(0)
+    });
+});
+
+req.end();

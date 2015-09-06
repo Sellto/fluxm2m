@@ -6,5 +6,17 @@
 ## Motivation
 `Coreflux` is a central part of `Mainflux` IoT cloud.
 
+## Installation
+Apart from standard:
+```
+    npm install
+```
+
+you must also hand-install coap-router package:
+
+```
+git clone https://github.com/Mainflux/router node_modules/router
+```
+
 ## License
 [MIT](https://en.wikipedia.org/wiki/MIT_License)
