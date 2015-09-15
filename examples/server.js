@@ -31,7 +31,8 @@ coap
             host: 'localhost',
             method: 'POST',
             query: 'HELLO REGISTER',
-            pathname: '/rd'
+            pathname: '/rd',
+            query: 'ep=MFL001&lt=86400&lwm2m=1.0&b=U'
         })
     .end();
 
@@ -42,7 +43,8 @@ coap
             host: 'localhost',
             method: 'PUT',
             query: 'HELLO UPDATE',
-            pathname: '/rd'
+            pathname: '/rd/MFL001',
+            query: 'lt=65000'
         })
     .end();
 
@@ -53,7 +55,8 @@ coap
             host: 'localhost',
             method: 'DELETE',
             query: 'HELLO DEREGISTER',
-            pathname: '/rd'
+            pathname: '/rd/MFL001',
+            query: 'MFL0'
         })
 
     .on('end', function() {
