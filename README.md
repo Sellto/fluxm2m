@@ -15,7 +15,7 @@ npm install
 you must also hand-install coap-router package:
 
 ```
-git clone https://github.com/Mainflux/lean-router node_modules/lean-router
+git clone https://github.com/Mainflux/lean-router node_modules/coap-router
 ```
 
 ## License
