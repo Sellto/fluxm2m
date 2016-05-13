@@ -1,8 +1,8 @@
-/*
+/**
  * Copyright (c) Mainflux
  *
- * Coreflux is licensed under an MIT license.
- * All rights not explicitly granted in the MIT license are reserved.
+ * Liteflu is licensed under an Apache license, version 2.0 license.
+ * All rights not explicitly granted in the Apache license, version 2.0 are reserved.
  * See the included LICENSE file for more details.
  */
 
