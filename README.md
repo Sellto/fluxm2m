@@ -9,7 +9,7 @@
 ## Installation
 Apart from standard:
 ```
-    npm install
+npm install
 ```
 
 you must also hand-install coap-router package:
