@@ -21,5 +21,5 @@ gulp.task('watch', function() {
 
     // Start up the server and have it reload when anything in the
     // ./build/ directory changes
-    nodemon({script: 'examples/server.js', watch: 'examples/**'});
+    nodemon({script: 'examples/lwm2mServer.js', watch: 'examples/**'});
 });

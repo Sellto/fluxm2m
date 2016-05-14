@@ -1,28 +1,4 @@
-/**
- * Copyright (c) Mainflux
- *
- * Liteflu is licensed under an Apache license, version 2.0 license.
- * All rights not explicitly granted in the Apache license, version 2.0 are reserved.
- * See the included LICENSE file for more details.
- */
-
-var lwm2m   = require ('../');
-var coap    = require ('coap');
-
-var server = lwm2m.server();
-
-server.start();
-
-var req = coap.request('coap://localhost/')
-
-req.on('response', function(res) {
-    res.pipe(process.stdout);
-    res.on('end', function() {
-        //process.exit(0)
-    });
-});
-
-req.end();
+var coap = require('coap');
 
 /** Register */
 coap
@@ -30,7 +6,6 @@ coap
         {
             host: 'localhost',
             method: 'POST',
-            query: 'HELLO REGISTER',
             pathname: '/rd',
             query: 'ep=MFL001&lt=86400&lwm2m=1.0&b=U'
         })
@@ -42,7 +17,6 @@ coap
         {
             host: 'localhost',
             method: 'PUT',
-            query: 'HELLO UPDATE',
             pathname: '/rd/MFL001',
             query: 'lt=65000'
         })
@@ -54,7 +28,6 @@ coap
         {
             host: 'localhost',
             method: 'DELETE',
-            query: 'HELLO DEREGISTER',
             pathname: '/rd/MFL001',
             query: 'MFL0'
         })
