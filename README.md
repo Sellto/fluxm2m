@@ -19,4 +19,4 @@ git clone https://github.com/Mainflux/lean-router node_modules/lean-router
 ```
 
 ## License
-[MIT](https://en.wikipedia.org/wiki/MIT_License)
+[Apache-2.0](https://github.com/Mainflux/liteflux/blob/master/LICENSE)
