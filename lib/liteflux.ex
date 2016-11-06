@@ -1,0 +1,2 @@
+defmodule Liteflux do
+end
