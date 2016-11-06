@@ -1,6 +1,8 @@
 # Liteflux
+[![License](https://img.shields.io/badge/license-Apache%20v2.0-blue.svg)](LICENSE)
+[![Join the chat at https://gitter.im/Mainflux/mainflux](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Mainflux/mainflux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-`Liteflux` is [OMA Lightweight M2M (LWM2M)](http://openmobilealliance.org/about-oma/work-program/m2m-enablers/) protocol
+Liteflux is [OMA Lightweight M2M (LWM2M)](http://openmobilealliance.org/about-oma/work-program/m2m-enablers/) protocol
 implementation in the form of Elixir libraries that can be used to construct LWM2M servers and clients.
 
 ## Installation
