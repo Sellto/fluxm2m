@@ -1,5 +1,5 @@
 ###
-# Mainflux Dockerfile
+# Mainflux CoAP Server Dockerfile
 ###
 
 FROM golang:alpine
@@ -8,23 +8,11 @@ MAINTAINER Mainflux
 ###
 # Install
 ###
-
-RUN apk update && apk add git && rm -rf /var/cache/apk/*
-
 # Copy the local package files to the container's workspace.
-ADD . /go/src/github.com/mainflux/mainflux-lite
-
-RUN mkdir -p /config/lite
-COPY config/config-docker.yml /config/lite/config.yml
-
-# Get and install the dependencies
-RUN go get github.com/mainflux/fluxm2m
+COPY . /go/src/github.com/mainflux/fluxm2m
+RUN cd /go/src/github.com/mainflux/fluxm2m && go install
 
 ###
-# Run main command from entrypoint and parameters in CMD[]
+# Run main command with dockerize
 ###
-CMD ["/config/lite/config.yml"]
-
-# Run mainflux command by default when the container starts.
-ENTRYPOINT ["/go/bin/fluxm2m"]
-
+CMD fluxm2m

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Mainflux
+ * Copyright (c) 2016 Mainflux
  *
  * Mainflux server is licensed under an Apache license, version 2.0.
  * All rights not explicitly granted in the Apache license, version 2.0 are reserved.
@@ -9,39 +9,74 @@
 package main
 
 import (
+	"flag"
 	"fmt"
-	//"strconv"
+	"os"
+
+	"github.com/mainflux/fluxm2m/api"
+
+	"github.com/dustin/go-coap"
 	"github.com/fatih/color"
-	"github.com/mainflux/fluxm2m/config"
-	"runtime"
 )
 
+const (
+	help string = `
+Usage: mainflux-influxdb [options]
+Options:
+	-a, --addr	CoAP server host
+	-p, --port	CoAP server port
+	-h, --help	Show help
+`
+)
+
+type (
+	Opts struct {
+		LWM2MHost string
+		LWM2MPort string
+
+		Help bool
+	}
+)
+
+var opts Opts
+
 func main() {
+	flag.StringVar(&opts.LWM2MHost, "a", "localhost", "LwM2M host.")
+	flag.StringVar(&opts.LWM2MPort, "p", "5683", "LwM2M port.")
+	flag.BoolVar(&opts.Help, "h", false, "Show help.")
+	flag.BoolVar(&opts.Help, "help", false, "Show help.")
 
-	// Parse config
-	var cfg config.Config
-	cfg.Parse()
+	flag.Parse()
 
-	fmt.Printf("%v", cfg)
+	if opts.Help {
+		fmt.Printf("%s\n", help)
+		os.Exit(0)
+	}
+
+	// Initialize map of Observers
+	api.ObsMap = make(map[string][]api.Observer)
 
 	// Print banner
 	color.Cyan(banner)
-	//color.Cyan("Magic happens on port " + strconv.Itoa(cfg.MqttPort))
+	color.Cyan(fmt.Sprintf("Magic happens on port %s", opts.LWM2MPort))
 
-	/** Keep main() runnig */
-	runtime.Goexit()
+	// Serve CoAP
+	s := fmt.Sprintf("%s:%s", opts.LWM2MHost, opts.LWM2MPort)
+	coap.ListenAndServe("udp", s, api.LWM2MServer())
 }
 
 var banner = `
-███████╗██╗     ██╗   ██╗██╗  ██╗    ███╗   ███╗██████╗ ███╗   ███╗
-██╔════╝██║     ██║   ██║╚██╗██╔╝    ████╗ ████║╚════██╗████╗ ████║
-█████╗  ██║     ██║   ██║ ╚███╔╝     ██╔████╔██║ █████╔╝██╔████╔██║
-██╔══╝  ██║     ██║   ██║ ██╔██╗     ██║╚██╔╝██║██╔═══╝ ██║╚██╔╝██║
-██║     ███████╗╚██████╔╝██╔╝ ██╗    ██║ ╚═╝ ██║███████╗██║ ╚═╝ ██║
-
-               == Industrial LWM2M Server ==
-
-               Made with <3 by Mainflux Team
+███████╗██╗     ██╗   ██╗██╗  ██╗███╗   ███╗██████╗ ███╗   ███╗
+██╔════╝██║     ██║   ██║╚██╗██╔╝████╗ ████║╚════██╗████╗ ████║
+█████╗  ██║     ██║   ██║ ╚███╔╝ ██╔████╔██║ █████╔╝██╔████╔██║
+██╔══╝  ██║     ██║   ██║ ██╔██╗ ██║╚██╔╝██║██╔═══╝ ██║╚██╔╝██║
+██║     ███████╗╚██████╔╝██╔╝ ██╗██║ ╚═╝ ██║███████╗██║ ╚═╝ ██║
+╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚═╝     ╚═╝
+                                                               
+            == Industrial IoT System ==
+       
+           Made with <3 by Mainflux Team
 [w] http://mainflux.io
 [t] @mainflux
+
 `
