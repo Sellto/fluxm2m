@@ -67,10 +67,6 @@ func getMessage(l *net.UDPConn, a *net.UDPAddr, m *coap.Message) *coap.Message {
 		res.SetOption(coap.ContentFormat, coap.AppJSON)
 	}
 
-	// Channel ID
-	//s := strings.Split(m.PathString(), "/")
-	//cid := s[1]
-
 	if m.IsConfirmable() {
 		res.Payload = []byte("{\"res\": \"observing\"}")
 	}

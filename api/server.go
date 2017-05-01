@@ -4,26 +4,28 @@ import (
 	"log"
 	"net"
 
+	"github.com/dereulenspiegel/coap-mux"
 	"github.com/dustin/go-coap"
 )
 
-func handleMsg(l *net.UDPConn, a *net.UDPAddr, m *coap.Message) *coap.Message {
-	var res *coap.Message
-	log.Printf("Got message in handleMsg: path=%q: %#v from %v", m.Path(), m, a)
-
-	switch m.Code {
-	case coap.GET:
-		res = getMessage(l, a, m)
-	case coap.POST:
-		res = sendMessage(l, a, m)
+// NotFound Handler - useful for ACK-EMPTY
+func notFoundHandler(l *net.UDPConn, a *net.UDPAddr, m *coap.Message) *coap.Message {
+	log.Printf("Got message in notFoundHandler: path=%q: %#v from %v", m.Path(), m, a)
+	if m.IsConfirmable() {
+		return &coap.Message{
+			Type: coap.Acknowledgement,
+			Code: coap.NotFound,
+		}
 	}
-
-	return res
+	return nil
 }
 
-func LWM2MServer() *coap.ServeMux {
-	mux := coap.NewServeMux()
-	mux.Handle("/msg/", coap.FuncHandler(handleMsg))
+func LWM2MServer() *mux.Router {
+	r := mux.NewRouter()
+	r.Handle("/msg/{channel_id}", coap.FuncHandler(sendMessage)).Methods(coap.POST)
+	r.Handle("/msg/{channel_id}", coap.FuncHandler(getMessage)).Methods(coap.GET)
 
-	return mux
+	r.NotFoundHandler = coap.FuncHandler(notFoundHandler)
+
+	return r
 }
