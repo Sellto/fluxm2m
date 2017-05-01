@@ -1,44 +1,27 @@
-# Liteflux
-[![License](https://img.shields.io/badge/license-Apache%20v2.0-blue.svg)](LICENSE)
-[![Join the chat at https://gitter.im/Mainflux/mainflux](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Mainflux/mainflux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# FluxM2M
 
-Liteflux is [OMA Lightweight M2M (LWM2M)](http://openmobilealliance.org/about-oma/work-program/m2m-enablers/) protocol
-implementation in the form of Elixir libraries that can be used to construct LWM2M servers and clients.
+Mainflux LWM2M server.
 
-## Installation
+### Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+Installing FluxM2M is trivial [`go get`](https://golang.org/cmd/go/):
+```bash
+go get github.com/mainflux/fluxm2m
+$GOBIN/fluxm2m
+```
 
-  1. Add liteflux to your list of dependencies in `mix.exs`:
-
-        def deps do
-          [{:liteflux, "~> 0.0.1"}]
-        end
-
-  2. Ensure liteflux is started before your application:
-
-        def application do
-          [applications: [:liteflux]]
-        end
+### Documentation
+Development documentation can be found on our [Mainflux GitHub Wiki](https://github.com/Mainflux/mainflux/wiki).
 
 ### Community
 #### Mailing list
-[mainflux](https://groups.google.com/forum/#!forum/mainflux) Google group
-
-For quick questions and suggestions you can also use GitHub Issues.
+- [mainflux](https://groups.google.com/forum/#!forum/mainflux)
 
 #### IRC
 [Mainflux Gitter](https://gitter.im/Mainflux/mainflux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 #### Twitter
 [@mainflux](https://twitter.com/mainflux)
-
-### Authors
-Main architect and BDFL of Mainflux project is [@drasko](https://github.com/drasko). Additionaly, initial version of Mainflux was architectured and crafted by [@janko-isidorovic](https://github.com/janko-isidorovic), [@nmarcetic](https://github.com/nmarcetic) and [@mijicd](https://github.com/mijicd).
-
-Maintainers are listed in [MAINTAINERS](MAINTAINERS) file.
-
-Contributors are listed in [CONTRIBUTORS](CONTRIBUTORS) file.
 
 ### License
 [Apache License, version 2.0](LICENSE)
