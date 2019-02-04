@@ -13,7 +13,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/mainflux/fluxm2m/api"
+	"github.com/Sellto/fluxm2m/api"
 
 	"github.com/dustin/go-coap"
 	"github.com/fatih/color"
